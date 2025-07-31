@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AgroRent - Farming Tools on Rent</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav>
+    <div class="logo">AgroRent</div>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#tools">Rent Tools</a></li>
+      <li><a href="#list-tool">List Your Tool</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header id="home">
+    <h1>Rent & List Farming Tools Easily!</h1>
+    <p>Farmers can now rent tools or list their own farming equipment. Join the AgroRent community!</p>
+  </header>
+
+  <section id="tools" class="section-pad">
+    <h2>Available Farming Tools</h2>
+    <div class="tool-list">
+      <div class="tool-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS24qXgQXjZe7mZp6Mnh-hYIf9E95Wg7CeqpQ&s" alt="Tractor">
+        <h3>Tractor</h3>
+        <p>Heavy-duty tractor for ploughing and hauling.</p>
+        <div class="rent">Rent: ₹1,500/day</div>
+        <button>Book Now</button>
+        <div class="lister">Lister: Mahesh, Nashik</div>
+      </div>
+      <div class="tool-card">
+        <img src="https://5.imimg.com/data5/SELLER/Default/2023/12/367520014/EF/ZG/GJ/2497808/seed-planter.jpg" alt="Seed Drill">
+        <h3>Seed Drill</h3>
+        <p>Machine for sowing seeds efficiently.</p>
+        <div class="rent">Rent: ₹400/day</div>
+        <button>Book Now</button>
+        <div class="lister">Lister: Sunita, Baramati</div>
+      </div>
+      <div class="tool-card">
+        <img src="https://5.imimg.com/data5/WN/FU/QG/SELLER-5713126/swaraj-8100-ex-harvester-500x500.jpg" alt="Harvesting Combine">
+        <h3>Harvester</h3>
+        <p>Automated harvester for efficient crop harvesting.</p>
+        <div class="rent">Rent: ₹2,000/day</div>
+        <button>Book Now</button>
+        <div class="lister">Lister: Ramesh, Indore</div>
+      </div>
+      <!-- Add more tool-cards as needed -->
+    </div>
+  </section>
+
+  <section id="list-tool" class="section-pad">
+    <h2>List Your Farming Tool</h2>
+    <p>Fill the form below to offer your farming equipment for rent.</p>
+    <form class="list-form">
+      <label>
+        Tool Name:<br>
+        <input type="text" name="toolname" required>
+      </label>
+      <label>
+        Description:<br>
+        <textarea name="description" required></textarea>
+      </label>
+      <label>
+        Rent Per Day (₹):<br>
+        <input type="number" name="rent" min="0" required>
+      </label>
+      <label>
+        Your Name:<br>
+        <input type="text" name="owner" required>
+      </label>
+      <label>
+        Location:<br>
+        <input type="text" name="location" required>
+      </label>
+      <label>
+        Upload Photo:<br>
+        <input type="file" name="image" accept="image/*">
+      </label>
+      <button type="submit">List Tool</button>
+    </form>
+    <p class="form-notice">* This is a demo form. To make it work, add backend or JavaScript.</p>
+  </section>
+
+  <footer id="contact">
+    <h4>Contact Us</h4>
+    <p>Email: support@agrorent.com | Phone: 1800-XXX-XXXX</p>
+  </footer>
+<script>
+// Helper to create a booking popup
+function showBookingForm(toolName, lister) {
+  // Make overlay
+  let overlay = document.createElement('div');
+  overlay.className = 'booking-overlay';
+  overlay.innerHTML = `
+    <div class="booking-modal">
+      <h3>Book: ${toolName}</h3>
+      ${lister ? `<p><small>Owner: ${lister}</small></p>` : ''}
+      <form id="bookingForm">
+        <label>
+          Your Name:<br>
+          <input type="text" name="renterName" required>
+        </label><br>
+        <label>
+          Number of Days:<br>
+          <input type="number" name="days" min="1" value="1" required>
+        </label><br>
+        <button type="submit">Confirm Booking</button>
+        <button type="button" id="closeModal" style="margin-left:10px;">Cancel</button>
+      </form>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+
+  // Simple styling for modal overlay
+  let style = document.createElement('style');
+  style.textContent = `
+    .booking-overlay {
+      position:fixed; left:0; top:0; width:100vw; height:100vh;
+      background:rgba(0,0,0,0.21); display:flex; align-items:center; justify-content:center; z-index:99;
+    }
+    .booking-modal {
+      background:#fff; padding:2em 1.1em; border-radius:10px; width:280px; max-width:96vw;
+      box-shadow:0 1px 10px 0 #228b2299;
+      font-family: Arial, sans-serif;
+    }
+    .booking-modal input { width:95%; margin:0.22em 0; }
+    .booking-modal button { padding:0.5em 1.2em; border:none; border-radius:4px; background:#228b22; color:#fff; }
+    .booking-modal button#closeModal { background:#bbb; color:#222; }
+  `;
+  overlay.appendChild(style);
+
+  // Event handlers
+  overlay.querySelector('#closeModal').onclick = () => overlay.remove();
+
+  overlay.querySelector('#bookingForm').onsubmit = function(e){
+    e.preventDefault();
+    alert('Booking confirmed!\nTool: ' + toolName +
+          '\nName: ' + this.renterName.value +
+          '\nDays: ' + this.days.value);
+          '\nlocation:' + 
+    overlay.remove();
+  }
+}
+
+// Wire up all "Book Now" buttons on page load
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.tool-card button').forEach(function(btn){
+    btn.onclick = function(){
+      let toolCard = btn.closest('.tool-card');
+      let toolName = toolCard.querySelector('h3').textContent;
+      let listerTag = toolCard.querySelector('.lister');
+      let lister = listerTag ? listerTag.textContent.replace('Lister: ', '') : '';
+      showBookingForm(toolName, lister);
+    };
+  });
+
+  // Listing Tool Form handler
+  let listForm = document.querySelector('.list-form');
+  if(listForm){
+    listForm.onsubmit = function(e){
+      e.preventDefault();
+      // Collect form values
+      let form = e.target;
+      let name = form.toolname.value;
+      let desc = form.description.value;
+      let rent = form.rent.value;
+      let owner = form.owner.value;
+      let location = form.location.value;
+      let imageInput = form.image;
+      let imageURL = "https://images.unsplash.com/photo-tractor"; // fallback
+
+      if(imageInput && imageInput.files && imageInput.files[0]){
+        let reader = new FileReader();
+        reader.onload = function(evt){
+          addToolCard(name, desc, rent, owner, location, evt.target.result);
+        }
+        reader.readAsDataURL(imageInput.files[0]);
+      } else {
+        addToolCard(name, desc, rent, owner, location, imageURL);
+      }
+
+      alert("Your tool has been listed!");
+      form.reset();
+    };
+  };
+
+  // Add new tool card to tool-list
+  function addToolCard(name, desc, rent, owner, location, img){
+    let toolList = document.querySelector('.tool-list');
+    let div = document.createElement('div');
+    div.className = 'tool-card';
+    div.innerHTML = `
+      <img src="${img}" alt="${name}">
+      <h3>${name}</h3>
+      <p>${desc}</p>
+      <div class="rent">Rent: ₹${rent}/day</div>
+      <button>Book Now</button>
+      <div class="lister">Lister: ${owner}, ${location}</div>
+    `;
+    // Book Now button
+    div.querySelector('button').onclick = function() {
+      showBookingForm(name, `${owner}, ${location}`);
+    };
+    toolList.prepend(div);
+  }
+});
+
+</script>
+</body>
+</html>

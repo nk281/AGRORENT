@@ -1,0 +1,188 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f4fff8;
+  margin: 0;
+  color: #232323;
+}
+
+nav {
+  background: #228b22;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 2em;
+}
+
+nav .logo {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2em;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1em;
+  transition: text-decoration 0.2s;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+header {
+  background: #e6f4ea;
+  text-align: center;
+  padding: 2em 1em;
+}
+
+header h1 {
+  margin-bottom: 0.5em;
+}
+
+.section-pad {
+  padding: 2em 1em;
+  max-width: 1050px;
+  margin: auto;
+}
+
+.tool-list {
+  display: flex;
+  gap: 2em;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.tool-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 7px rgba(0,0,0,0.07);
+  padding: 1em;
+  width: 270px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2em;
+  position: relative;
+}
+
+.tool-card img {
+  width: 190px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1em;
+}
+
+.tool-card h3 {
+  margin: 0.5em 0 0.2em;
+}
+
+.tool-card .rent {
+  color: #228b22;
+  font-weight: bold;
+  margin: 0.5em 0;
+}
+
+.tool-card button {
+  background: #228b22;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 0.7em 1.3em;
+  cursor: pointer;
+  font-size: 1em;
+  margin-top: 0.7em;
+  transition: background 0.2s;
+}
+
+.tool-card button:hover {
+  background: #196619;
+}
+
+.tool-card .lister {
+  font-size: 0.92em;
+  color: #555;
+  margin-top: 0.4em;
+}
+
+.list-form {
+  margin-top: 1.2em;
+  background: #fff;
+  border-radius: 10px;
+  max-width: 480px;
+  padding: 2em 1.5em;
+  box-shadow: 0 2px 8px rgba(34,139,34,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1.1em;
+}
+
+.list-form label {
+  font-weight: 500;
+  margin-bottom: 0.2em;
+}
+
+.list-form input[type="text"],
+.list-form input[type="number"],
+.list-form textarea {
+  width: 100%;
+  padding: 0.7em 0.65em;
+  border-radius: 5px;
+  border: 1px solid #ccd3ce;
+  font-size: 1em;
+  margin-top: 0.12em;
+  margin-bottom: 0.21em;
+}
+
+.list-form button {
+  align-self: flex-end;
+  background: #228b22;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 0.7em 2em;
+  font-size: 1em;
+  margin-top: 0.4em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.list-form button:hover {
+  background: #196619;
+}
+
+.list-form input[type="file"] {
+  margin-top: 0.2em;
+}
+
+.form-notice {
+  font-size: 0.90em;
+  color: #888;
+  margin-top: 0.7em;
+}
+
+footer {
+  background: #e6f4ea;
+  text-align: center;
+  padding: 1.2em 0;
+  margin-top: 2em;
+}
+
+@media (max-width: 1050px) {
+  .tool-list {
+    flex-direction: column;
+    align-items: center;
+  }
+  .section-pad {
+    padding: 2em 0.4em;
+  }
+}
